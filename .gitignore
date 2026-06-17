@@ -144,3 +144,7 @@ vite.config.ts.timestamp-*
 
 # Local VS Code settings
 .vscode/
+
+# .NET build output
+**/bin/
+**/obj/
