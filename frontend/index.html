@@ -3,11 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UniTrack</title>
+  <title>UniTrack | Student Academic Monitoring System</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>UniTrack</h1>
-  <p>Student Academic Monitoring System</p>
+  <header class="navbar">
+    <div class="logo">UniTrack</div>
+
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#roles">Roles</a>
+      <a href="#about">About</a>
+      <a class="nav-button" href="#">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="badge">Student Academic Monitoring System</span>
+
+        <h1>Manage academic progress in one place.</h1>
+
+        <p>
+          UniTrack helps students, instructors, and administrators manage grades,
+          assignments, and academic progress through a simple digital platform.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-button" href="#features">View Features</a>
+          <a class="secondary-button" href="#roles">User Roles</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Academic Overview</h3>
+
+        <div class="stat">
+          <span>Average Grade</span>
+          <strong>8.7</strong>
+        </div>
+
+        <div class="stat">
+          <span>Pending Assignments</span>
+          <strong>3</strong>
+        </div>
+
+        <div class="progress">
+          <span>Course Progress</span>
+          <div class="progress-bar">
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <h2>Main Features</h2>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Grade Monitoring</h3>
+          <p>Students can view grades and follow their academic performance.</p>
+        </article>
+
+        <article class="card">
+          <h3>Assignment Tracking</h3>
+          <p>Students can check deadlines and instructors can manage assignments.</p>
+        </article>
+
+        <article class="card">
+          <h3>Academic Progress</h3>
+          <p>The system helps users understand progress across courses.</p>
+        </article>
+
+        <article class="card">
+          <h3>Role-Based Access</h3>
+          <p>Students, instructors, and administrators have different actions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="roles" class="section">
+      <h2>User Roles</h2>
+
+      <div class="roles">
+        <div class="role">
+          <h3>Student</h3>
+          <p>View grades, assignments, and academic progress.</p>
+        </div>
+
+        <div class="role">
+          <h3>Instructor</h3>
+          <p>Add grades, create assignments, and manage course information.</p>
+        </div>
+
+        <div class="role">
+          <h3>Administrator</h3>
+          <p>Manage users and basic academic system data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <h2>About UniTrack</h2>
+
+      <p>
+        UniTrack is a personal software engineering project created to practice
+        frontend development, backend development, API design, and future database
+        integration using ASP.NET Core.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 UniTrack. Personal portfolio project.</p>
+  </footer>
 </body>
 </html>
