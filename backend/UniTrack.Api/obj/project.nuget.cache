@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "UnE8DT0Kh70=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\User\\OneDrive\\Documents\\GitHub\\unitrack-student-monitoring-system\\backend\\UniTrack.Api\\UniTrack.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.0\\microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
