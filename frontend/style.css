@@ -311,3 +311,27 @@ footer {
   text-decoration: none;
   font-weight: 600;
 }
+
+.dashboard-page {
+  min-height: 100vh;
+  padding: 80px 8%;
+  background: #f5f7fb;
+}
+
+.dashboard-page h1 {
+  color: #1f4fd8;
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.dashboard-page p {
+  color: #4b5563;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.dashboard-page a {
+  color: #1f4fd8;
+  font-weight: 600;
+  text-decoration: none;
+}
