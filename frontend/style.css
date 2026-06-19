@@ -471,3 +471,42 @@ footer {
 .spacing-top {
   margin-top: 28px;
 }
+
+.dashboard-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.form-button {
+  width: fit-content;
+  padding: 12px 22px;
+  background: #1f4fd8;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form-button:hover {
+  background: #183fb0;
+}
+
+.form-message {
+  margin-top: 14px;
+  font-weight: 600;
+  color: #1f4fd8;
+}
+
+@media (max-width: 900px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

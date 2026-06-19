@@ -310,3 +310,42 @@ loadStudents();
 loadInstructorDashboard();
 loadAdminDashboard();
 loadStudentAcademicDashboard();
+
+async function createStudent(event) {
+  event.preventDefault();
+
+  const message = document.getElementById("studentFormMessage");
+
+  const student = {
+    fullName: document.getElementById("studentFullName").value,
+    email: document.getElementById("studentEmail").value,
+    studentNumber: document.getElementById("studentNumber").value,
+    program: document.getElementById("studentProgram").value,
+    yearOfStudy: Number(document.getElementById("yearOfStudy").value)
+  };
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/students`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(student)
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create student");
+    }
+
+    message.textContent = "Student added successfully.";
+
+    document.getElementById("studentFullName").value = "";
+    document.getElementById("studentEmail").value = "";
+    document.getElementById("studentNumber").value = "";
+    document.getElementById("studentProgram").value = "";
+    document.getElementById("yearOfStudy").value = "";
+  } catch (error) {
+    message.textContent = "Could not add student.";
+    console.error(error);
+  }
+}

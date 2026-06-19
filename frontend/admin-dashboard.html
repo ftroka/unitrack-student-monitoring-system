@@ -42,6 +42,47 @@
     </section>
 
     <section class="dashboard-panel">
+  <h2>Add New Student</h2>
+
+  <form class="dashboard-form" onsubmit="createStudent(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="studentFullName">Full Name</label>
+        <input type="text" id="studentFullName" placeholder="Enter full name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="studentEmail">Email</label>
+        <input type="email" id="studentEmail" placeholder="Enter email" required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="studentNumber">Student Number</label>
+        <input type="text" id="studentNumber" placeholder="Example: STU004" required />
+      </div>
+
+      <div class="form-group">
+        <label for="studentProgram">Program</label>
+        <input type="text" id="studentProgram" placeholder="Example: Computer Science" required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="yearOfStudy">Year of Study</label>
+        <input type="number" id="yearOfStudy" min="1" max="5" placeholder="Example: 2" required />
+      </div>
+    </div>
+
+    <button type="submit" class="form-button">Add Student</button>
+  </form>
+
+  <p id="studentFormMessage" class="form-message"></p>
+</section>
+
+    <section class="dashboard-panel">
       <h2>Users From API</h2>
 
       <table>
