@@ -212,3 +212,101 @@ async function loadAdminDashboard() {
 }
 
 loadAdminDashboard();
+
+async function loadStudentAcademicDashboard() {
+  const gradesTableBody = document.getElementById("studentGradesTableBody");
+  const assignmentsTableBody = document.getElementById("studentAssignmentsTableBody");
+  const averageGrade = document.getElementById("averageGrade");
+  const studentAssignmentsCount = document.getElementById("studentAssignmentsCount");
+  const passedGradesCount = document.getElementById("passedGradesCount");
+
+  if (!gradesTableBody || !assignmentsTableBody) {
+    return;
+  }
+
+  try {
+    const gradesResponse = await fetch("http://localhost:5033/api/grades");
+    const assignmentsResponse = await fetch("http://localhost:5033/api/assignments");
+
+    if (!gradesResponse.ok || !assignmentsResponse.ok) {
+      throw new Error("Failed to fetch student academic data");
+    }
+
+    const grades = await gradesResponse.json();
+    const assignments = await assignmentsResponse.json();
+
+    gradesTableBody.innerHTML = "";
+    assignmentsTableBody.innerHTML = "";
+
+    if (grades.length > 0) {
+      const totalGrade = grades.reduce((sum, grade) => sum + grade.value, 0);
+      const average = totalGrade / grades.length;
+
+      averageGrade.textContent = average.toFixed(1);
+      passedGradesCount.textContent = grades.filter(grade => grade.status === "Passed").length;
+    } else {
+      averageGrade.textContent = "0";
+      passedGradesCount.textContent = "0";
+    }
+
+    studentAssignmentsCount.textContent = assignments.length;
+
+    if (grades.length === 0) {
+      gradesTableBody.innerHTML = `
+        <tr>
+          <td colspan="4">No grades found.</td>
+        </tr>
+      `;
+    } else {
+      grades.forEach(grade => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${grade.studentId}</td>
+          <td>${grade.courseId}</td>
+          <td>${grade.value}</td>
+          <td>${grade.status}</td>
+        `;
+
+        gradesTableBody.appendChild(row);
+      });
+    }
+
+    if (assignments.length === 0) {
+      assignmentsTableBody.innerHTML = `
+        <tr>
+          <td colspan="4">No assignments found.</td>
+        </tr>
+      `;
+    } else {
+      assignments.forEach(assignment => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${assignment.title}</td>
+          <td>${assignment.description}</td>
+          <td>${new Date(assignment.deadline).toLocaleDateString()}</td>
+          <td>${assignment.status}</td>
+        `;
+
+        assignmentsTableBody.appendChild(row);
+      });
+    }
+  } catch (error) {
+    gradesTableBody.innerHTML = `
+      <tr>
+        <td colspan="4">Could not load grades from API.</td>
+      </tr>
+    `;
+
+    assignmentsTableBody.innerHTML = `
+      <tr>
+        <td colspan="4">Could not load assignments from API.</td>
+      </tr>
+    `;
+
+    console.error(error);
+  }
+}
+
+loadStudentAcademicDashboard();

@@ -20,43 +20,62 @@
     <div class="dashboard-header">
       <div>
         <h1>Student Dashboard</h1>
-        <p>Welcome back. Track your academic performance and assignments.</p>
+        <p>Welcome back. Track your grades, assignments, and academic progress.</p>
       </div>
     </div>
 
     <section class="dashboard-cards">
       <div class="dashboard-card">
         <span>Average Grade</span>
-        <strong>8.7</strong>
+        <strong id="averageGrade">0</strong>
       </div>
 
       <div class="dashboard-card">
-        <span>Pending Assignments</span>
-        <strong>3</strong>
+        <span>Total Assignments</span>
+        <strong id="studentAssignmentsCount">0</strong>
       </div>
 
       <div class="dashboard-card">
-        <span>Course Progress</span>
-        <strong>72%</strong>
+        <span>Passed Grades</span>
+        <strong id="passedGradesCount">0</strong>
       </div>
     </section>
 
     <section class="dashboard-panel">
-      <h2>Students From API</h2>
+      <h2>Grades From API</h2>
 
       <table>
         <thead>
           <tr>
-            <th>Student Number</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Program</th>
-            <th>Year</th>
+            <th>Student ID</th>
+            <th>Course ID</th>
+            <th>Grade</th>
+            <th>Status</th>
           </tr>
         </thead>
-        <tbody id="studentsTableBody">
+        <tbody id="studentGradesTableBody">
           <tr>
-            <td colspan="5">Loading students...</td>
+            <td colspan="4">Loading grades...</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="dashboard-panel spacing-top">
+      <h2>Assignments From API</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="studentAssignmentsTableBody">
+          <tr>
+            <td colspan="4">Loading assignments...</td>
           </tr>
         </tbody>
       </table>
