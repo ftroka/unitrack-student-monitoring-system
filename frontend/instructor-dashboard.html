@@ -41,6 +41,40 @@
       </div>
     </section>
 
+<section class="dashboard-panel">
+  <h2>Add New Course</h2>
+
+  <form class="dashboard-form" onsubmit="createCourse(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="courseName">Course Name</label>
+        <input type="text" id="courseName" placeholder="Example: Software Engineering" required />
+      </div>
+
+      <div class="form-group">
+        <label for="courseCode">Course Code</label>
+        <input type="text" id="courseCode" placeholder="Example: SWE101" required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="courseCredits">Credits</label>
+        <input type="number" id="courseCredits" min="1" max="10" placeholder="Example: 6" required />
+      </div>
+
+      <div class="form-group">
+        <label for="instructorName">Instructor Name</label>
+        <input type="text" id="instructorName" placeholder="Example: Dr. Mentor Kola" required />
+      </div>
+    </div>
+
+    <button type="submit" class="form-button">Add Course</button>
+  </form>
+
+  <p id="courseFormMessage" class="form-message"></p>
+</section>
+    
     <section class="dashboard-panel">
       <h2>Courses From API</h2>
 

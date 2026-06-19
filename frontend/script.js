@@ -349,3 +349,42 @@ async function createStudent(event) {
     console.error(error);
   }
 }
+
+async function createCourse(event) {
+  event.preventDefault();
+
+  const message = document.getElementById("courseFormMessage");
+
+  const course = {
+    courseName: document.getElementById("courseName").value,
+    courseCode: document.getElementById("courseCode").value,
+    credits: Number(document.getElementById("courseCredits").value),
+    instructorName: document.getElementById("instructorName").value
+  };
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/courses`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(course)
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create course");
+    }
+
+    message.textContent = "Course added successfully.";
+
+    document.getElementById("courseName").value = "";
+    document.getElementById("courseCode").value = "";
+    document.getElementById("courseCredits").value = "";
+    document.getElementById("instructorName").value = "";
+
+    loadInstructorDashboard();
+  } catch (error) {
+    message.textContent = "Could not add course.";
+    console.error(error);
+  }
+}
