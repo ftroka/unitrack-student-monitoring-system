@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
+builder.Services.AddControllers();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -16,6 +18,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapControllers();
 
 var summaries = new[]
 {
