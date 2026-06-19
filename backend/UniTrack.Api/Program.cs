@@ -20,6 +20,140 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 
     if (!context.Students.Any())
+{
+    context.Students.AddRange(
+        new Student
+        {
+            FullName = "Arber Hoxha",
+            Email = "arber.hoxha@example.com",
+            StudentNumber = "STU001",
+            Program = "Software Engineering",
+            YearOfStudy = 2
+        },
+        new Student
+        {
+            FullName = "Elira Dervishi",
+            Email = "elira.dervishi@example.com",
+            StudentNumber = "STU002",
+            Program = "Computer Science",
+            YearOfStudy = 3
+        },
+        new Student
+        {
+            FullName = "Klea Marku",
+            Email = "klea.marku@example.com",
+            StudentNumber = "STU003",
+            Program = "Information Systems",
+            YearOfStudy = 1
+        }
+    );
+
+    context.SaveChanges();
+}
+
+if (!context.Courses.Any())
+{
+    context.Courses.AddRange(
+        new Course
+        {
+            CourseName = "Software Engineering",
+            CourseCode = "SWE101",
+            Credits = 6,
+            InstructorName = "Dr. Mentor Kola"
+        },
+        new Course
+        {
+            CourseName = "Database Systems",
+            CourseCode = "DBS201",
+            Credits = 5,
+            InstructorName = "Dr. Ana Leka"
+        },
+        new Course
+        {
+            CourseName = "Web Development",
+            CourseCode = "WEB150",
+            Credits = 5,
+            InstructorName = "Dr. Ilir Domi"
+        }
+    );
+
+    context.SaveChanges();
+}
+
+if (!context.Assignments.Any())
+{
+    var softwareEngineering = context.Courses.First(c => c.CourseCode == "SWE101");
+    var databaseSystems = context.Courses.First(c => c.CourseCode == "DBS201");
+    var webDevelopment = context.Courses.First(c => c.CourseCode == "WEB150");
+
+    context.Assignments.AddRange(
+        new CourseAssignment
+        {
+            CourseId = softwareEngineering.Id,
+            Title = "Requirements Analysis",
+            Description = "Prepare a requirements document for an academic system.",
+            Deadline = new DateTime(2026, 6, 25),
+            Status = "Open"
+        },
+        new CourseAssignment
+        {
+            CourseId = databaseSystems.Id,
+            Title = "Database Design",
+            Description = "Create an ER diagram and database schema.",
+            Deadline = new DateTime(2026, 6, 28),
+            Status = "Open"
+        },
+        new CourseAssignment
+        {
+            CourseId = webDevelopment.Id,
+            Title = "Frontend Layout",
+            Description = "Build a responsive dashboard layout.",
+            Deadline = new DateTime(2026, 7, 2),
+            Status = "Planned"
+        }
+    );
+
+    context.SaveChanges();
+}
+
+if (!context.Grades.Any())
+{
+    var arber = context.Students.First(s => s.StudentNumber == "STU001");
+    var elira = context.Students.First(s => s.StudentNumber == "STU002");
+    var klea = context.Students.First(s => s.StudentNumber == "STU003");
+
+    var softwareEngineering = context.Courses.First(c => c.CourseCode == "SWE101");
+    var databaseSystems = context.Courses.First(c => c.CourseCode == "DBS201");
+    var webDevelopment = context.Courses.First(c => c.CourseCode == "WEB150");
+
+    context.Grades.AddRange(
+        new Grade
+        {
+            StudentId = arber.Id,
+            CourseId = softwareEngineering.Id,
+            Value = 9,
+            Status = "Passed"
+        },
+        new Grade
+        {
+            StudentId = elira.Id,
+            CourseId = databaseSystems.Id,
+            Value = 8,
+            Status = "Passed"
+        },
+        new Grade
+        {
+            StudentId = klea.Id,
+            CourseId = webDevelopment.Id,
+            Value = 9,
+            Status = "Passed"
+        }
+    );
+
+    context.SaveChanges();
+}
+
+    if (!context.Students.Any())
     {
         context.Students.AddRange(
             new Student
