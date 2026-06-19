@@ -8,6 +8,16 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -24,26 +34,26 @@ using (var scope = app.Services.CreateScope())
     context.Students.AddRange(
         new Student
         {
-            FullName = "Arber Hoxha",
-            Email = "arber.hoxha@example.com",
+            FullName = "Arjol Sinaj",
+            Email = "arjol.sinaj@example.com",
             StudentNumber = "STU001",
-            Program = "Software Engineering",
+            Program = "Business Informatics",
             YearOfStudy = 2
         },
         new Student
         {
-            FullName = "Elira Dervishi",
-            Email = "elira.dervishi@example.com",
+            FullName = "Fabjan Troka",
+            Email = "fabjan.troka@example.com",
             StudentNumber = "STU002",
             Program = "Computer Science",
             YearOfStudy = 3
         },
         new Student
         {
-            FullName = "Klea Marku",
-            Email = "klea.marku@example.com",
+            FullName = "Elvis Lamaj",
+            Email = "elvis.lamaj@example.com",
             StudentNumber = "STU003",
-            Program = "Information Systems",
+            Program = "Computer Engineering",
             YearOfStudy = 1
         }
     );
@@ -118,9 +128,9 @@ if (!context.Assignments.Any())
 
 if (!context.Grades.Any())
 {
-    var arber = context.Students.First(s => s.StudentNumber == "STU001");
-    var elira = context.Students.First(s => s.StudentNumber == "STU002");
-    var klea = context.Students.First(s => s.StudentNumber == "STU003");
+    var arjol = context.Students.First(s => s.StudentNumber == "STU001");
+    var fabjan = context.Students.First(s => s.StudentNumber == "STU002");
+    var elvis = context.Students.First(s => s.StudentNumber == "STU003");
 
     var softwareEngineering = context.Courses.First(c => c.CourseCode == "SWE101");
     var databaseSystems = context.Courses.First(c => c.CourseCode == "DBS201");
@@ -129,21 +139,21 @@ if (!context.Grades.Any())
     context.Grades.AddRange(
         new Grade
         {
-            StudentId = arber.Id,
+            StudentId = arjol.Id,
             CourseId = softwareEngineering.Id,
             Value = 9,
             Status = "Passed"
         },
         new Grade
         {
-            StudentId = elira.Id,
+            StudentId = fabjan.Id,
             CourseId = databaseSystems.Id,
             Value = 8,
             Status = "Passed"
         },
         new Grade
         {
-            StudentId = klea.Id,
+            StudentId = elvis.Id,
             CourseId = webDevelopment.Id,
             Value = 9,
             Status = "Passed"
@@ -190,6 +200,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 

@@ -42,35 +42,27 @@
     </section>
 
     <section class="dashboard-panel">
-      <h2>Recent Grades</h2>
+      <h2>Students From API</h2>
 
       <table>
         <thead>
           <tr>
-            <th>Course</th>
-            <th>Grade</th>
-            <th>Status</th>
+            <th>Student Number</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Program</th>
+            <th>Year</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="studentsTableBody">
           <tr>
-            <td>Software Engineering</td>
-            <td>9</td>
-            <td>Passed</td>
-          </tr>
-          <tr>
-            <td>Database Systems</td>
-            <td>8</td>
-            <td>Passed</td>
-          </tr>
-          <tr>
-            <td>Web Development</td>
-            <td>9</td>
-            <td>Passed</td>
+            <td colspan="5">Loading students...</td>
           </tr>
         </tbody>
       </table>
     </section>
   </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
