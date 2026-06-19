@@ -429,3 +429,40 @@ async function createAssignment(event) {
     console.error(error);
   }
 }
+
+async function createGrade(event) {
+  event.preventDefault();
+
+  const message = document.getElementById("gradeFormMessage");
+
+  const grade = {
+    studentId: Number(document.getElementById("gradeStudentId").value),
+    courseId: Number(document.getElementById("gradeCourseId").value),
+    value: Number(document.getElementById("gradeValue").value),
+    status: document.getElementById("gradeStatus").value
+  };
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/grades`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(grade)
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create grade");
+    }
+
+    message.textContent = "Grade added successfully.";
+
+    document.getElementById("gradeStudentId").value = "";
+    document.getElementById("gradeCourseId").value = "";
+    document.getElementById("gradeValue").value = "";
+    document.getElementById("gradeStatus").value = "";
+  } catch (error) {
+    message.textContent = "Could not add grade.";
+    console.error(error);
+  }
+}
