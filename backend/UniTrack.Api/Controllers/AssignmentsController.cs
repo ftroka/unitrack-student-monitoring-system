@@ -46,4 +46,20 @@ public class AssignmentsController : ControllerBase
 
         return CreatedAtAction(nameof(GetAssignmentById), new { id = assignment.Id }, assignment);
     }
+    [HttpDelete("{id}")]
+public async Task<IActionResult> DeleteAssignment(int id)
+{
+    var assignment = await _context.Assignments.FindAsync(id);
+
+    if (assignment == null)
+    {
+        return NotFound();
+    }
+
+    _context.Assignments.Remove(assignment);
+
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
 }

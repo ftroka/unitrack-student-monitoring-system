@@ -46,4 +46,20 @@ public class CoursesController : ControllerBase
 
         return CreatedAtAction(nameof(GetCourseById), new { id = course.Id }, course);
     }
+    [HttpDelete("{id}")]
+public async Task<IActionResult> DeleteCourse(int id)
+{
+    var course = await _context.Courses.FindAsync(id);
+
+    if (course == null)
+    {
+        return NotFound();
+    }
+
+    _context.Courses.Remove(course);
+
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
 }

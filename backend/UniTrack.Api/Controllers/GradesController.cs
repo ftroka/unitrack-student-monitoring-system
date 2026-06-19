@@ -46,4 +46,20 @@ public class GradesController : ControllerBase
 
         return CreatedAtAction(nameof(GetGradeById), new { id = grade.Id }, grade);
     }
+    [HttpDelete("{id}")]
+public async Task<IActionResult> DeleteGrade(int id)
+{
+    var grade = await _context.Grades.FindAsync(id);
+
+    if (grade == null)
+    {
+        return NotFound();
+    }
+
+    _context.Grades.Remove(grade);
+
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
 }
