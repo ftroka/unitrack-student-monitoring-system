@@ -20,57 +20,68 @@
     <div class="dashboard-header">
       <div>
         <h1>Instructor Dashboard</h1>
-        <p>Manage student grades, assignments, and course activities.</p>
+        <p>Manage courses, assignments, and academic activities.</p>
       </div>
     </div>
 
     <section class="dashboard-cards">
       <div class="dashboard-card">
-        <span>Total Students</span>
-        <strong>48</strong>
+        <span>Total Courses</span>
+        <strong id="totalCourses">0</strong>
       </div>
 
       <div class="dashboard-card">
-        <span>Assignments Created</span>
-        <strong>12</strong>
+        <span>Total Assignments</span>
+        <strong id="totalAssignments">0</strong>
       </div>
 
       <div class="dashboard-card">
-        <span>Grades Managed</span>
-        <strong>156</strong>
+        <span>Dashboard Status</span>
+        <strong>Active</strong>
       </div>
     </section>
 
     <section class="dashboard-panel">
-      <h2>Course Assignments</h2>
+      <h2>Courses From API</h2>
 
       <table>
         <thead>
           <tr>
-            <th>Assignment</th>
-            <th>Course</th>
-            <th>Deadline</th>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Credits</th>
+            <th>Instructor</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="coursesTableBody">
           <tr>
-            <td>Requirements Analysis</td>
-            <td>Software Engineering</td>
-            <td>June 25, 2026</td>
+            <td colspan="4">Loading courses...</td>
           </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="dashboard-panel spacing-top">
+      <h2>Assignments From API</h2>
+
+      <table>
+        <thead>
           <tr>
-            <td>Database Design</td>
-            <td>Database Systems</td>
-            <td>June 28, 2026</td>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Status</th>
           </tr>
+        </thead>
+        <tbody id="assignmentsTableBody">
           <tr>
-            <td>Frontend Layout</td>
-            <td>Web Development</td>
-            <td>July 2, 2026</td>
+            <td colspan="4">Loading assignments...</td>
           </tr>
         </tbody>
       </table>
     </section>
   </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

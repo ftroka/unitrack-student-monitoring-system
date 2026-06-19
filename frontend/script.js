@@ -66,3 +66,91 @@ async function loadStudents() {
 }
 
 loadStudents();
+
+async function loadInstructorDashboard() {
+  const coursesTableBody = document.getElementById("coursesTableBody");
+  const assignmentsTableBody = document.getElementById("assignmentsTableBody");
+  const totalCourses = document.getElementById("totalCourses");
+  const totalAssignments = document.getElementById("totalAssignments");
+
+  if (!coursesTableBody || !assignmentsTableBody) {
+    return;
+  }
+
+  try {
+    const coursesResponse = await fetch("http://localhost:5033/api/courses");
+    const assignmentsResponse = await fetch("http://localhost:5033/api/assignments");
+
+    if (!coursesResponse.ok || !assignmentsResponse.ok) {
+      throw new Error("Failed to fetch instructor dashboard data");
+    }
+
+    const courses = await coursesResponse.json();
+    const assignments = await assignmentsResponse.json();
+
+    totalCourses.textContent = courses.length;
+    totalAssignments.textContent = assignments.length;
+
+    coursesTableBody.innerHTML = "";
+
+    if (courses.length === 0) {
+      coursesTableBody.innerHTML = `
+        <tr>
+          <td colspan="4">No courses found.</td>
+        </tr>
+      `;
+    } else {
+      courses.forEach(course => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${course.courseCode}</td>
+          <td>${course.courseName}</td>
+          <td>${course.credits}</td>
+          <td>${course.instructorName}</td>
+        `;
+
+        coursesTableBody.appendChild(row);
+      });
+    }
+
+    assignmentsTableBody.innerHTML = "";
+
+    if (assignments.length === 0) {
+      assignmentsTableBody.innerHTML = `
+        <tr>
+          <td colspan="4">No assignments found.</td>
+        </tr>
+      `;
+    } else {
+      assignments.forEach(assignment => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${assignment.title}</td>
+          <td>${assignment.description}</td>
+          <td>${new Date(assignment.deadline).toLocaleDateString()}</td>
+          <td>${assignment.status}</td>
+        `;
+
+        assignmentsTableBody.appendChild(row);
+      });
+    }
+  } catch (error) {
+    coursesTableBody.innerHTML = `
+      <tr>
+        <td colspan="4">Could not load courses from API.</td>
+      </tr>
+    `;
+
+    assignmentsTableBody.innerHTML = `
+      <tr>
+        <td colspan="4">Could not load assignments from API.</td>
+      </tr>
+    `;
+
+    console.error(error);
+  }
+}
+
+loadInstructorDashboard();

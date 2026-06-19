@@ -467,3 +467,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+.spacing-top {
+  margin-top: 28px;
+}
