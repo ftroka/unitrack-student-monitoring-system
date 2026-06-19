@@ -95,6 +95,50 @@
       </table>
     </section>
 
+<section class="dashboard-panel spacing-top">
+  <h2>Add New Assignment</h2>
+
+  <form class="dashboard-form" onsubmit="createAssignment(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="assignmentTitle">Title</label>
+        <input type="text" id="assignmentTitle" placeholder="Example: Requirements Analysis" required />
+      </div>
+
+      <div class="form-group">
+        <label for="assignmentCourseId">Course ID</label>
+        <input type="number" id="assignmentCourseId" min="1" placeholder="Example: 1" required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="assignmentDeadline">Deadline</label>
+        <input type="date" id="assignmentDeadline" required />
+      </div>
+
+      <div class="form-group">
+        <label for="assignmentStatus">Status</label>
+        <select id="assignmentStatus" required>
+          <option value="">Choose status</option>
+          <option value="Open">Open</option>
+          <option value="Planned">Planned</option>
+          <option value="Closed">Closed</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="assignmentDescription">Description</label>
+      <input type="text" id="assignmentDescription" placeholder="Enter assignment description" required />
+    </div>
+
+    <button type="submit" class="form-button">Add Assignment</button>
+  </form>
+
+  <p id="assignmentFormMessage" class="form-message"></p>
+</section>
+
     <section class="dashboard-panel spacing-top">
       <h2>Assignments From API</h2>
 

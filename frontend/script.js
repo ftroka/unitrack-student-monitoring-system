@@ -388,3 +388,44 @@ async function createCourse(event) {
     console.error(error);
   }
 }
+
+async function createAssignment(event) {
+  event.preventDefault();
+
+  const message = document.getElementById("assignmentFormMessage");
+
+  const assignment = {
+    courseId: Number(document.getElementById("assignmentCourseId").value),
+    title: document.getElementById("assignmentTitle").value,
+    description: document.getElementById("assignmentDescription").value,
+    deadline: document.getElementById("assignmentDeadline").value,
+    status: document.getElementById("assignmentStatus").value
+  };
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/assignments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(assignment)
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create assignment");
+    }
+
+    message.textContent = "Assignment added successfully.";
+
+    document.getElementById("assignmentCourseId").value = "";
+    document.getElementById("assignmentTitle").value = "";
+    document.getElementById("assignmentDescription").value = "";
+    document.getElementById("assignmentDeadline").value = "";
+    document.getElementById("assignmentStatus").value = "";
+
+    loadInstructorDashboard();
+  } catch (error) {
+    message.textContent = "Could not add assignment.";
+    console.error(error);
+  }
+}
