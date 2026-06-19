@@ -154,3 +154,61 @@ async function loadInstructorDashboard() {
 }
 
 loadInstructorDashboard();
+
+async function loadAdminDashboard() {
+  const usersTableBody = document.getElementById("usersTableBody");
+  const totalUsers = document.getElementById("totalUsers");
+  const totalStudentUsers = document.getElementById("totalStudentUsers");
+  const totalInstructorUsers = document.getElementById("totalInstructorUsers");
+
+  if (!usersTableBody) {
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5033/api/users");
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch users");
+    }
+
+    const users = await response.json();
+
+    usersTableBody.innerHTML = "";
+
+    totalUsers.textContent = users.length;
+    totalStudentUsers.textContent = users.filter(user => user.role === "Student").length;
+    totalInstructorUsers.textContent = users.filter(user => user.role === "Instructor").length;
+
+    if (users.length === 0) {
+      usersTableBody.innerHTML = `
+        <tr>
+          <td colspan="3">No users found.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    users.forEach(user => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${user.fullName}</td>
+        <td>${user.email}</td>
+        <td>${user.role}</td>
+      `;
+
+      usersTableBody.appendChild(row);
+    });
+  } catch (error) {
+    usersTableBody.innerHTML = `
+      <tr>
+        <td colspan="3">Could not load users from API.</td>
+      </tr>
+    `;
+
+    console.error(error);
+  }
+}
+
+loadAdminDashboard();

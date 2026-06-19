@@ -20,57 +20,47 @@
     <div class="dashboard-header">
       <div>
         <h1>Admin Dashboard</h1>
-        <p>Manage users, roles, and basic academic system information.</p>
+        <p>Manage users, roles, and academic system information.</p>
       </div>
     </div>
 
     <section class="dashboard-cards">
       <div class="dashboard-card">
         <span>Total Users</span>
-        <strong>126</strong>
+        <strong id="totalUsers">0</strong>
       </div>
 
       <div class="dashboard-card">
         <span>Students</span>
-        <strong>102</strong>
+        <strong id="totalStudentUsers">0</strong>
       </div>
 
       <div class="dashboard-card">
         <span>Instructors</span>
-        <strong>18</strong>
+        <strong id="totalInstructorUsers">0</strong>
       </div>
     </section>
 
     <section class="dashboard-panel">
-      <h2>System Overview</h2>
+      <h2>Users From API</h2>
 
       <table>
         <thead>
           <tr>
-            <th>Module</th>
-            <th>Status</th>
-            <th>Role Access</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="usersTableBody">
           <tr>
-            <td>Grade Management</td>
-            <td>Active</td>
-            <td>Instructor, Admin</td>
-          </tr>
-          <tr>
-            <td>Assignment Tracking</td>
-            <td>Active</td>
-            <td>Student, Instructor</td>
-          </tr>
-          <tr>
-            <td>User Management</td>
-            <td>Planned</td>
-            <td>Admin</td>
+            <td colspan="3">Loading users...</td>
           </tr>
         </tbody>
       </table>
     </section>
   </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
