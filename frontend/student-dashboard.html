@@ -7,11 +7,70 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="dashboard-page">
-    <h1>Student Dashboard</h1>
-    <p>View grades, assignments, and academic progress.</p>
+  <aside class="sidebar">
+    <h2>UniTrack</h2>
+    <a href="student-dashboard.html">Dashboard</a>
+    <a href="#">Grades</a>
+    <a href="#">Assignments</a>
+    <a href="#">Progress</a>
+    <a href="login.html">Logout</a>
+  </aside>
 
-    <a href="login.html">← Back to login</a>
+  <main class="dashboard-content">
+    <div class="dashboard-header">
+      <div>
+        <h1>Student Dashboard</h1>
+        <p>Welcome back. Track your academic performance and assignments.</p>
+      </div>
+    </div>
+
+    <section class="dashboard-cards">
+      <div class="dashboard-card">
+        <span>Average Grade</span>
+        <strong>8.7</strong>
+      </div>
+
+      <div class="dashboard-card">
+        <span>Pending Assignments</span>
+        <strong>3</strong>
+      </div>
+
+      <div class="dashboard-card">
+        <span>Course Progress</span>
+        <strong>72%</strong>
+      </div>
+    </section>
+
+    <section class="dashboard-panel">
+      <h2>Recent Grades</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Grade</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Software Engineering</td>
+            <td>9</td>
+            <td>Passed</td>
+          </tr>
+          <tr>
+            <td>Database Systems</td>
+            <td>8</td>
+            <td>Passed</td>
+          </tr>
+          <tr>
+            <td>Web Development</td>
+            <td>9</td>
+            <td>Passed</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </main>
 </body>
 </html>
