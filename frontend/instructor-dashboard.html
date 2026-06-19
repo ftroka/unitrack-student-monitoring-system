@@ -7,11 +7,70 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="dashboard-page">
-    <h1>Instructor Dashboard</h1>
-    <p>Add grades, create assignments, and manage course information.</p>
+  <aside class="sidebar">
+    <h2>UniTrack</h2>
+    <a href="instructor-dashboard.html">Dashboard</a>
+    <a href="#">Students</a>
+    <a href="#">Grades</a>
+    <a href="#">Assignments</a>
+    <a href="login.html">Logout</a>
+  </aside>
 
-    <a href="login.html">← Back to login</a>
+  <main class="dashboard-content">
+    <div class="dashboard-header">
+      <div>
+        <h1>Instructor Dashboard</h1>
+        <p>Manage student grades, assignments, and course activities.</p>
+      </div>
+    </div>
+
+    <section class="dashboard-cards">
+      <div class="dashboard-card">
+        <span>Total Students</span>
+        <strong>48</strong>
+      </div>
+
+      <div class="dashboard-card">
+        <span>Assignments Created</span>
+        <strong>12</strong>
+      </div>
+
+      <div class="dashboard-card">
+        <span>Grades Managed</span>
+        <strong>156</strong>
+      </div>
+    </section>
+
+    <section class="dashboard-panel">
+      <h2>Course Assignments</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Assignment</th>
+            <th>Course</th>
+            <th>Deadline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Requirements Analysis</td>
+            <td>Software Engineering</td>
+            <td>June 25, 2026</td>
+          </tr>
+          <tr>
+            <td>Database Design</td>
+            <td>Database Systems</td>
+            <td>June 28, 2026</td>
+          </tr>
+          <tr>
+            <td>Frontend Layout</td>
+            <td>Web Development</td>
+            <td>July 2, 2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </main>
 </body>
 </html>
