@@ -335,3 +335,135 @@ footer {
   font-weight: 600;
   text-decoration: none;
 }
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #111827;
+  color: #ffffff;
+  padding: 28px 22px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.sidebar h2 {
+  color: #ffffff;
+  margin-bottom: 34px;
+  font-size: 26px;
+}
+
+.sidebar a {
+  display: block;
+  color: #d1d5db;
+  text-decoration: none;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.sidebar a:hover {
+  background: #1f2937;
+  color: #ffffff;
+}
+
+.dashboard-content {
+  margin-left: 240px;
+  min-height: 100vh;
+  padding: 40px;
+  background: #f5f7fb;
+}
+
+.dashboard-header {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 18px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-header h1 {
+  color: #111827;
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.dashboard-header p {
+  color: #6b7280;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.dashboard-card {
+  background: #ffffff;
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-card span {
+  display: block;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.dashboard-card strong {
+  color: #1f4fd8;
+  font-size: 34px;
+}
+
+.dashboard-panel {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-panel h2 {
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+.dashboard-panel table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-panel th,
+.dashboard-panel td {
+  text-align: left;
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard-panel th {
+  color: #374151;
+  background: #f9fafb;
+}
+
+.dashboard-panel td {
+  color: #4b5563;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .dashboard-content {
+    margin-left: 0;
+    padding: 24px;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+}
