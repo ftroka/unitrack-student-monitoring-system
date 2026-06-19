@@ -7,11 +7,70 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="dashboard-page">
-    <h1>Admin Dashboard</h1>
-    <p>Manage users and basic academic system data.</p>
+  <aside class="sidebar">
+    <h2>UniTrack</h2>
+    <a href="admin-dashboard.html">Dashboard</a>
+    <a href="#">Users</a>
+    <a href="#">Roles</a>
+    <a href="#">System Data</a>
+    <a href="login.html">Logout</a>
+  </aside>
 
-    <a href="login.html">← Back to login</a>
+  <main class="dashboard-content">
+    <div class="dashboard-header">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p>Manage users, roles, and basic academic system information.</p>
+      </div>
+    </div>
+
+    <section class="dashboard-cards">
+      <div class="dashboard-card">
+        <span>Total Users</span>
+        <strong>126</strong>
+      </div>
+
+      <div class="dashboard-card">
+        <span>Students</span>
+        <strong>102</strong>
+      </div>
+
+      <div class="dashboard-card">
+        <span>Instructors</span>
+        <strong>18</strong>
+      </div>
+    </section>
+
+    <section class="dashboard-panel">
+      <h2>System Overview</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Status</th>
+            <th>Role Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Grade Management</td>
+            <td>Active</td>
+            <td>Instructor, Admin</td>
+          </tr>
+          <tr>
+            <td>Assignment Tracking</td>
+            <td>Active</td>
+            <td>Student, Instructor</td>
+          </tr>
+          <tr>
+            <td>User Management</td>
+            <td>Planned</td>
+            <td>Admin</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </main>
 </body>
 </html>
