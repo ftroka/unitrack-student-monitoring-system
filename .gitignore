@@ -148,3 +148,8 @@ vite.config.ts.timestamp-*
 # .NET build output
 **/bin/
 **/obj/
+
+# Local SQLite database
+*.db
+*.db-shm
+*.db-wal
