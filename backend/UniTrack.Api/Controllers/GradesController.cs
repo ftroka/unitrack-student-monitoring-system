@@ -1,0 +1,49 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using UniTrack.Api.Data;
+using UniTrack.Api.Models;
+
+namespace UniTrack.Api.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class GradesController : ControllerBase
+{
+    private readonly AppDbContext _context;
+
+    public GradesController(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<Grade>>> GetGrades()
+    {
+        var grades = await _context.Grades.ToListAsync();
+
+        return Ok(grades);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Grade>> GetGradeById(int id)
+    {
+        var grade = await _context.Grades.FindAsync(id);
+
+        if (grade == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(grade);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<Grade>> CreateGrade(Grade grade)
+    {
+        _context.Grades.Add(grade);
+
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetGradeById), new { id = grade.Id }, grade);
+    }
+}
