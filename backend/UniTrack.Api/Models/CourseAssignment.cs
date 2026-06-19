@@ -1,6 +1,6 @@
 namespace UniTrack.Api.Models;
 
-public class Assignment
+public class CourseAssignment
 {
     public int Id { get; set; }
 
