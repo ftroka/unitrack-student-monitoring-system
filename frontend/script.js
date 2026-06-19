@@ -1,3 +1,5 @@
+const API_BASE_URL = "http://localhost:5033/api";
+
 function handleLogin() {
   const role = document.getElementById("role").value;
 
@@ -14,6 +16,7 @@ function handleLogin() {
     window.location.href = "admin-dashboard.html";
   }
 }
+
 async function loadStudents() {
   const tableBody = document.getElementById("studentsTableBody");
 
@@ -22,7 +25,7 @@ async function loadStudents() {
   }
 
   try {
-    const response = await fetch("http://localhost:5033/api/students");
+    const response = await fetch(`${API_BASE_URL}/students`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch students");
@@ -65,8 +68,6 @@ async function loadStudents() {
   }
 }
 
-loadStudents();
-
 async function loadInstructorDashboard() {
   const coursesTableBody = document.getElementById("coursesTableBody");
   const assignmentsTableBody = document.getElementById("assignmentsTableBody");
@@ -78,8 +79,8 @@ async function loadInstructorDashboard() {
   }
 
   try {
-    const coursesResponse = await fetch("http://localhost:5033/api/courses");
-    const assignmentsResponse = await fetch("http://localhost:5033/api/assignments");
+    const coursesResponse = await fetch(`${API_BASE_URL}/courses`);
+    const assignmentsResponse = await fetch(`${API_BASE_URL}/assignments`);
 
     if (!coursesResponse.ok || !assignmentsResponse.ok) {
       throw new Error("Failed to fetch instructor dashboard data");
@@ -153,8 +154,6 @@ async function loadInstructorDashboard() {
   }
 }
 
-loadInstructorDashboard();
-
 async function loadAdminDashboard() {
   const usersTableBody = document.getElementById("usersTableBody");
   const totalUsers = document.getElementById("totalUsers");
@@ -166,7 +165,7 @@ async function loadAdminDashboard() {
   }
 
   try {
-    const response = await fetch("http://localhost:5033/api/users");
+    const response = await fetch(`${API_BASE_URL}/users`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch users");
@@ -211,8 +210,6 @@ async function loadAdminDashboard() {
   }
 }
 
-loadAdminDashboard();
-
 async function loadStudentAcademicDashboard() {
   const gradesTableBody = document.getElementById("studentGradesTableBody");
   const assignmentsTableBody = document.getElementById("studentAssignmentsTableBody");
@@ -225,8 +222,8 @@ async function loadStudentAcademicDashboard() {
   }
 
   try {
-    const gradesResponse = await fetch("http://localhost:5033/api/grades");
-    const assignmentsResponse = await fetch("http://localhost:5033/api/assignments");
+    const gradesResponse = await fetch(`${API_BASE_URL}/grades`);
+    const assignmentsResponse = await fetch(`${API_BASE_URL}/assignments`);
 
     if (!gradesResponse.ok || !assignmentsResponse.ok) {
       throw new Error("Failed to fetch student academic data");
@@ -309,4 +306,7 @@ async function loadStudentAcademicDashboard() {
   }
 }
 
+loadStudents();
+loadInstructorDashboard();
+loadAdminDashboard();
 loadStudentAcademicDashboard();
