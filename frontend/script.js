@@ -97,7 +97,7 @@ async function loadInstructorDashboard() {
     if (courses.length === 0) {
       coursesTableBody.innerHTML = `
         <tr>
-          <td colspan="4">No courses found.</td>
+          <td colspan="5">No courses found.</td>
         </tr>
       `;
     } else {
@@ -109,6 +109,11 @@ async function loadInstructorDashboard() {
           <td>${course.courseName}</td>
           <td>${course.credits}</td>
           <td>${course.instructorName}</td>
+          <td>
+            <button class="delete-button" onclick="deleteCourse(${course.id})">
+              Delete
+            </button>
+          </td>
         `;
 
         coursesTableBody.appendChild(row);
@@ -140,7 +145,7 @@ async function loadInstructorDashboard() {
   } catch (error) {
     coursesTableBody.innerHTML = `
       <tr>
-        <td colspan="4">Could not load courses from API.</td>
+        <td colspan="5">Could not load courses from API.</td>
       </tr>
     `;
 
@@ -306,11 +311,6 @@ async function loadStudentAcademicDashboard() {
   }
 }
 
-loadStudents();
-loadInstructorDashboard();
-loadAdminDashboard();
-loadStudentAcademicDashboard();
-
 async function createStudent(event) {
   event.preventDefault();
 
@@ -344,6 +344,8 @@ async function createStudent(event) {
     document.getElementById("studentNumber").value = "";
     document.getElementById("studentProgram").value = "";
     document.getElementById("yearOfStudy").value = "";
+
+    loadAdminStudents();
   } catch (error) {
     message.textContent = "Could not add student.";
     console.error(error);
@@ -546,4 +548,31 @@ async function deleteStudent(id) {
   }
 }
 
+async function deleteCourse(id) {
+  const confirmDelete = confirm("Are you sure you want to delete this course?");
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/courses/${id}`, {
+      method: "DELETE"
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete course");
+    }
+
+    loadInstructorDashboard();
+  } catch (error) {
+    alert("Could not delete course.");
+    console.error(error);
+  }
+}
+
+loadStudents();
+loadInstructorDashboard();
+loadAdminDashboard();
+loadStudentAcademicDashboard();
 loadAdminStudents();
