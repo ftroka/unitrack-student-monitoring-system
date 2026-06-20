@@ -192,27 +192,32 @@ async function loadAdminDashboard() {
     if (users.length === 0) {
       usersTableBody.innerHTML = `
         <tr>
-          <td colspan="3">No users found.</td>
+          <td colspan="4">No users found.</td>
         </tr>
       `;
       return;
     }
 
     users.forEach(user => {
-      const row = document.createElement("tr");
+  const row = document.createElement("tr");
 
-      row.innerHTML = `
-        <td>${user.fullName}</td>
-        <td>${user.email}</td>
-        <td>${user.role}</td>
-      `;
+  row.innerHTML = `
+    <td>${user.fullName}</td>
+    <td>${user.email}</td>
+    <td>${user.role}</td>
+    <td>
+      <button class="delete-button" onclick="deleteUser(${user.id})">
+        Delete
+      </button>
+    </td>
+  `;
 
-      usersTableBody.appendChild(row);
-    });
+  usersTableBody.appendChild(row);
+});
   } catch (error) {
     usersTableBody.innerHTML = `
       <tr>
-        <td colspan="3">Could not load users from API.</td>
+        <td colspan="4">Could not load users from API.</td>
       </tr>
     `;
 
@@ -624,6 +629,29 @@ async function deleteGrade(id) {
     loadStudentAcademicDashboard();
   } catch (error) {
     alert("Could not delete grade.");
+    console.error(error);
+  }
+}
+
+async function deleteUser(id) {
+  const confirmDelete = confirm("Are you sure you want to delete this user?");
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/users/${id}`, {
+      method: "DELETE"
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete user");
+    }
+
+    loadAdminDashboard();
+  } catch (error) {
+    alert("Could not delete user.");
     console.error(error);
   }
 }
