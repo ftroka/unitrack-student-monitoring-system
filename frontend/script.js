@@ -199,21 +199,21 @@ async function loadAdminDashboard() {
     }
 
     users.forEach(user => {
-  const row = document.createElement("tr");
+      const row = document.createElement("tr");
 
-  row.innerHTML = `
-    <td>${user.fullName}</td>
-    <td>${user.email}</td>
-    <td>${user.role}</td>
-    <td>
-      <button class="delete-button" onclick="deleteUser(${user.id})">
-        Delete
-      </button>
-    </td>
-  `;
+      row.innerHTML = `
+        <td>${user.fullName}</td>
+        <td>${user.email}</td>
+        <td>${user.role}</td>
+        <td>
+          <button class="delete-button" onclick="deleteUser(${user.id})">
+            Delete
+          </button>
+        </td>
+      `;
 
-  usersTableBody.appendChild(row);
-});
+      usersTableBody.appendChild(row);
+    });
   } catch (error) {
     usersTableBody.innerHTML = `
       <tr>
@@ -274,19 +274,19 @@ async function loadStudentAcademicDashboard() {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-        <td>${grade.studentId}</td>
-        <td>${grade.courseId}</td>
-        <td>${grade.value}</td>
-         <td>${grade.status}</td>
-         <td>
+          <td>${grade.studentId}</td>
+          <td>${grade.courseId}</td>
+          <td>${grade.value}</td>
+          <td>${grade.status}</td>
+          <td>
             <button class="delete-button" onclick="deleteGrade(${grade.id})">
-        Delete
+              Delete
             </button>
-             </td>
+          </td>
         `;
 
         gradesTableBody.appendChild(row);
-        });
+      });
     }
 
     if (assignments.length === 0) {
@@ -478,6 +478,8 @@ async function createGrade(event) {
     document.getElementById("gradeCourseId").value = "";
     document.getElementById("gradeValue").value = "";
     document.getElementById("gradeStatus").value = "";
+
+    loadStudentAcademicDashboard();
   } catch (error) {
     message.textContent = "Could not add grade.";
     console.error(error);
@@ -608,7 +610,6 @@ async function deleteAssignment(id) {
     console.error(error);
   }
 }
-
 
 async function deleteGrade(id) {
   const confirmDelete = confirm("Are you sure you want to delete this grade?");
