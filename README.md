@@ -17,6 +17,9 @@ The project includes a frontend interface, role-based dashboards, and an ASP.NET
 * Entity Framework Core models and migrations
 * REST APIs for students, courses, assignments, grades, and users
 * Frontend connected to backend APIs using JavaScript fetch
+* Create, read, update, and delete endpoints in the backend
+* Create forms for students, courses, assignments, and grades
+* Delete buttons for students, courses, assignments, grades, and users
 
 ## User Roles
 
@@ -86,26 +89,54 @@ unitrack-student-monitoring-system/
 
 ## Backend API Endpoints
 
+### Students
+
 ```text
-GET  /api/students
-GET  /api/students/{id}
-POST /api/students
+GET    /api/students
+GET    /api/students/{id}
+POST   /api/students
+PUT    /api/students/{id}
+DELETE /api/students/{id}
+```
 
-GET  /api/courses
-GET  /api/courses/{id}
-POST /api/courses
+### Courses
 
-GET  /api/assignments
-GET  /api/assignments/{id}
-POST /api/assignments
+```text
+GET    /api/courses
+GET    /api/courses/{id}
+POST   /api/courses
+PUT    /api/courses/{id}
+DELETE /api/courses/{id}
+```
 
-GET  /api/grades
-GET  /api/grades/{id}
-POST /api/grades
+### Assignments
 
-GET  /api/users
-GET  /api/users/{id}
-POST /api/users
+```text
+GET    /api/assignments
+GET    /api/assignments/{id}
+POST   /api/assignments
+PUT    /api/assignments/{id}
+DELETE /api/assignments/{id}
+```
+
+### Grades
+
+```text
+GET    /api/grades
+GET    /api/grades/{id}
+POST   /api/grades
+PUT    /api/grades/{id}
+DELETE /api/grades/{id}
+```
+
+### Users
+
+```text
+GET    /api/users
+GET    /api/users/{id}
+POST   /api/users
+PUT    /api/users/{id}
+DELETE /api/users/{id}
 ```
 
 ## How to Run the Backend
@@ -180,23 +211,25 @@ Ignored database files:
 
 The project currently includes:
 
-* Frontend pages and dashboards
-* Role-based frontend navigation
-* ASP.NET Core backend
+* Frontend pages and role-based dashboards
+* ASP.NET Core Web API backend
 * Entity Framework Core database context
 * SQLite database migration
 * Seed data
-* REST APIs
-* Frontend integration with backend APIs
+* REST APIs for students, courses, assignments, grades, and users
+* CRUD endpoints in the backend
+* Frontend forms for creating academic data
+* Frontend delete buttons connected to API delete endpoints
+* JavaScript fetch integration between frontend and backend
 
 ## Future Improvements
 
 * Add real authentication
 * Add JWT authorization
-* Add create/edit/delete forms in the frontend
+* Add edit forms in the frontend
 * Improve dashboard statistics
 * Add search and filtering
-* Add validation
+* Add validation messages
 * Add deployment
 * Add unit tests
 
