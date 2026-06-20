@@ -125,7 +125,7 @@ async function loadInstructorDashboard() {
     if (assignments.length === 0) {
       assignmentsTableBody.innerHTML = `
         <tr>
-          <td colspan="4">No assignments found.</td>
+          <td colspan="5">No assignments found.</td>
         </tr>
       `;
     } else {
@@ -137,6 +137,11 @@ async function loadInstructorDashboard() {
           <td>${assignment.description}</td>
           <td>${new Date(assignment.deadline).toLocaleDateString()}</td>
           <td>${assignment.status}</td>
+          <td>
+            <button class="delete-button" onclick="deleteAssignment(${assignment.id})">
+              Delete
+            </button>
+          </td>
         `;
 
         assignmentsTableBody.appendChild(row);
@@ -151,7 +156,7 @@ async function loadInstructorDashboard() {
 
     assignmentsTableBody.innerHTML = `
       <tr>
-        <td colspan="4">Could not load assignments from API.</td>
+        <td colspan="5">Could not load assignments from API.</td>
       </tr>
     `;
 
@@ -567,6 +572,29 @@ async function deleteCourse(id) {
     loadInstructorDashboard();
   } catch (error) {
     alert("Could not delete course.");
+    console.error(error);
+  }
+}
+
+async function deleteAssignment(id) {
+  const confirmDelete = confirm("Are you sure you want to delete this assignment?");
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/assignments/${id}`, {
+      method: "DELETE"
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete assignment");
+    }
+
+    loadInstructorDashboard();
+  } catch (error) {
+    alert("Could not delete assignment.");
     console.error(error);
   }
 }
