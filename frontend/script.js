@@ -466,3 +466,84 @@ async function createGrade(event) {
     console.error(error);
   }
 }
+
+async function loadAdminStudents() {
+  const tableBody = document.getElementById("adminStudentsTableBody");
+
+  if (!tableBody) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/students`);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch students");
+    }
+
+    const students = await response.json();
+
+    tableBody.innerHTML = "";
+
+    if (students.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="6">No students found.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    students.forEach(student => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${student.studentNumber}</td>
+        <td>${student.fullName}</td>
+        <td>${student.email}</td>
+        <td>${student.program}</td>
+        <td>${student.yearOfStudy}</td>
+        <td>
+          <button class="delete-button" onclick="deleteStudent(${student.id})">
+            Delete
+          </button>
+        </td>
+      `;
+
+      tableBody.appendChild(row);
+    });
+  } catch (error) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="6">Could not load students.</td>
+      </tr>
+    `;
+
+    console.error(error);
+  }
+}
+
+async function deleteStudent(id) {
+  const confirmDelete = confirm("Are you sure you want to delete this student?");
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/students/${id}`, {
+      method: "DELETE"
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete student");
+    }
+
+    loadAdminStudents();
+  } catch (error) {
+    alert("Could not delete student.");
+    console.error(error);
+  }
+}
+
+loadAdminStudents();

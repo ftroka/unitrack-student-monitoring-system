@@ -510,3 +510,17 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+.delete-button {
+  padding: 8px 12px;
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: #b91c1c;
+}
