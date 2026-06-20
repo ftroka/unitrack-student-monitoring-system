@@ -62,4 +62,28 @@ public async Task<IActionResult> DeleteUser(int id)
 
     return NoContent();
 }
+[HttpPut("{id}")]
+public async Task<IActionResult> UpdateUser(int id, User updatedUser)
+{
+    if (id != updatedUser.Id)
+    {
+        return BadRequest();
+    }
+
+    var user = await _context.Users.FindAsync(id);
+
+    if (user == null)
+    {
+        return NotFound();
+    }
+
+    user.FullName = updatedUser.FullName;
+    user.Email = updatedUser.Email;
+    user.PasswordHash = updatedUser.PasswordHash;
+    user.Role = updatedUser.Role;
+
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
 }

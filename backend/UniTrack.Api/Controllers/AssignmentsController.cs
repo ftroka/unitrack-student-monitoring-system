@@ -62,4 +62,29 @@ public async Task<IActionResult> DeleteAssignment(int id)
 
     return NoContent();
 }
+[HttpPut("{id}")]
+public async Task<IActionResult> UpdateAssignment(int id, CourseAssignment updatedAssignment)
+{
+    if (id != updatedAssignment.Id)
+    {
+        return BadRequest();
+    }
+
+    var assignment = await _context.Assignments.FindAsync(id);
+
+    if (assignment == null)
+    {
+        return NotFound();
+    }
+
+    assignment.CourseId = updatedAssignment.CourseId;
+    assignment.Title = updatedAssignment.Title;
+    assignment.Description = updatedAssignment.Description;
+    assignment.Deadline = updatedAssignment.Deadline;
+    assignment.Status = updatedAssignment.Status;
+
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
 }

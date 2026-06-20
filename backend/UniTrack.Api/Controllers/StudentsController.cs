@@ -62,4 +62,29 @@ public async Task<IActionResult> DeleteStudent(int id)
 
     return NoContent();
 }
+[HttpPut("{id}")]
+public async Task<IActionResult> UpdateStudent(int id, Student updatedStudent)
+{
+    if (id != updatedStudent.Id)
+    {
+        return BadRequest();
+    }
+
+    var student = await _context.Students.FindAsync(id);
+
+    if (student == null)
+    {
+        return NotFound();
+    }
+
+    student.FullName = updatedStudent.FullName;
+    student.Email = updatedStudent.Email;
+    student.StudentNumber = updatedStudent.StudentNumber;
+    student.Program = updatedStudent.Program;
+    student.YearOfStudy = updatedStudent.YearOfStudy;
+
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
 }

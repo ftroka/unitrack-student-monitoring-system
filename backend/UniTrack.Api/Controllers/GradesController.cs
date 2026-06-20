@@ -62,4 +62,28 @@ public async Task<IActionResult> DeleteGrade(int id)
 
     return NoContent();
 }
+[HttpPut("{id}")]
+public async Task<IActionResult> UpdateGrade(int id, Grade updatedGrade)
+{
+    if (id != updatedGrade.Id)
+    {
+        return BadRequest();
+    }
+
+    var grade = await _context.Grades.FindAsync(id);
+
+    if (grade == null)
+    {
+        return NotFound();
+    }
+
+    grade.StudentId = updatedGrade.StudentId;
+    grade.CourseId = updatedGrade.CourseId;
+    grade.Value = updatedGrade.Value;
+    grade.Status = updatedGrade.Status;
+
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
 }
