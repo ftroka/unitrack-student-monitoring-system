@@ -261,7 +261,7 @@ async function loadStudentAcademicDashboard() {
     if (grades.length === 0) {
       gradesTableBody.innerHTML = `
         <tr>
-          <td colspan="4">No grades found.</td>
+          <td colspan="5">No grades found.</td>
         </tr>
       `;
     } else {
@@ -269,14 +269,19 @@ async function loadStudentAcademicDashboard() {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-          <td>${grade.studentId}</td>
-          <td>${grade.courseId}</td>
-          <td>${grade.value}</td>
-          <td>${grade.status}</td>
+        <td>${grade.studentId}</td>
+        <td>${grade.courseId}</td>
+        <td>${grade.value}</td>
+         <td>${grade.status}</td>
+         <td>
+            <button class="delete-button" onclick="deleteGrade(${grade.id})">
+        Delete
+            </button>
+             </td>
         `;
 
         gradesTableBody.appendChild(row);
-      });
+        });
     }
 
     if (assignments.length === 0) {
@@ -302,7 +307,7 @@ async function loadStudentAcademicDashboard() {
   } catch (error) {
     gradesTableBody.innerHTML = `
       <tr>
-        <td colspan="4">Could not load grades from API.</td>
+        <td colspan="5">Could not load grades from API.</td>
       </tr>
     `;
 
@@ -595,6 +600,30 @@ async function deleteAssignment(id) {
     loadInstructorDashboard();
   } catch (error) {
     alert("Could not delete assignment.");
+    console.error(error);
+  }
+}
+
+
+async function deleteGrade(id) {
+  const confirmDelete = confirm("Are you sure you want to delete this grade?");
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/grades/${id}`, {
+      method: "DELETE"
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete grade");
+    }
+
+    loadStudentAcademicDashboard();
+  } catch (error) {
+    alert("Could not delete grade.");
     console.error(error);
   }
 }
